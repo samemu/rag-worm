@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+title: "RAG-Worm: measurement harness for self-replicating instructions in RAG memory"
+message: "If you use this artifact, please cite the paper and this archive."
+type: software
+authors:
+  - family-names: Tout
+    given-names: Samir
+    affiliation: Eastern Michigan University
+version: 2.0.0
+date-released: 2026-10-17
+license: MIT
+url: "https://github.com/samtout/rag-worm"
+#doi: "10.5281/zenodo.XXXXXXX"
+#identifiers: / preferred-citation: block pointing to the arXiv ID

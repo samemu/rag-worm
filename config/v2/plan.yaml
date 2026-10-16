@@ -1,0 +1,49 @@
+# Experiment plan. Each grid key is an experiment.* field unless written as section.key.
+# Verify model tags with `ollama pull <tag>` before the first run; the quantization must
+# be the same (Q4_K_M) for every model so quantization is not a confound.
+models_small:
+  - llama3.1:8b-instruct-q4_K_M
+  - mistral:7b-instruct-v0.3-q4_K_M
+  - qwen2.5:7b-instruct-q4_K_M
+
+experiments:
+  # E2: null control. No poison docs. Expect 0 L1/L2. Provides D2 false-positive data.
+  E2:
+    fixed: {experiment: {attack: false, T: 100}}
+    grid: {policy: [p_sys, p_usr], window: [5], seed: [1, 2]}
+
+  # E3: main factorial. 3 models x 2 placements x 2 windows x 5 seeds = 60 runs.
+  E3:
+    grid: {policy: [p_sys, p_usr], window: [0, 5], seed: [1, 2, 3, 4, 5]}
+
+  # E3b: source takedown. Poison removed at t=20. Tests the R_out prediction directly:
+  # R_out > 1 cells should keep producing L2 after t=20; R_out < 1 cells should go extinct.
+  E3b:
+    fixed: {experiment: {poison_ttl: 20}}
+    grid: {policy: [p_sys, p_usr], window: [5], seed: [1, 2, 3]}
+
+  # E4: scale (Mac). Run with --models qwen2.5:32b-instruct-q4_K_M
+  E4:
+    models: [qwen2.5:32b-instruct-q4_K_M]
+    grid: {policy: [p_sys, p_usr], window: [0, 5], seed: [1, 2, 3]}
+
+  # E5: platform check (run on the Mac; compare with the same E3 cells from the 3080).
+  E5:
+    models: [llama3.1:8b-instruct-q4_K_M]
+    grid: {policy: [p_sys], window: [5], seed: [1, 2, 3]}
+
+  # E6: defenses on W=5. Spotlighting (prompt-level) and D2 storage guard (system-level).
+  E6:
+    grid: {policy: [p_usr_spot], window: [5], seed: [1, 2, 3, 4, 5]}
+  E6d2:
+    fixed: {experiment: {defense: d2_guard}}
+    grid: {policy: [p_sys, p_usr], window: [5], seed: [1, 2, 3, 4, 5]}
+  # E6o: shows that stripping the MARKER does not stop the INSTRUCTION (a marker-only defense).
+  E6o:
+    fixed: {experiment: {defense: oracle_marker_strip}}
+    grid: {policy: [p_sys], window: [5], seed: [1, 2, 3]}
+
+  # E7: ablation of the permissive 'apply any formatting rule' clause.
+  E7:
+    fixed: {experiment: {permissive_clause: true}}
+    grid: {policy: [p_usr], window: [5], seed: [1, 2, 3]}

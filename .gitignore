@@ -1,0 +1,19 @@
+# --- existing ---
+logs/
+results/
+.cache/
+__pycache__/
+*.pyc
+*.partial*
+venvRAGSecV2/
+.DS_Store
+**/.DS_Store
+
+# --- add for public release ---
+paper/
+*.docx
+PROGRESS_LOG.md
+PAPER_FOUNDATIONS.md
+EXPERIMENT_PLAN.md
+.env*
+*.pkl

@@ -1,0 +1,3 @@
+# MacBook (Apple silicon). Start Ollama with:  OLLAMA_CONTEXT_LENGTH=8192 ollama serve
+llm:
+  base_url: http://localhost:11434

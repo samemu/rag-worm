@@ -1,0 +1,3 @@
+# Offline harness validation (no Ollama, no GPU, no model download).
+llm: {backend: mock, mock_p: 0.3}
+embedding: {strategy: hash}

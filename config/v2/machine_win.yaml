@@ -1,0 +1,3 @@
+# Windows + RTX 3080. Start Ollama with:  $env:OLLAMA_CONTEXT_LENGTH="8192"; ollama serve
+llm:
+  base_url: http://localhost:11434
