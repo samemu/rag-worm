@@ -62,9 +62,6 @@ offensive technique.
 ## Citation
 See CITATION.cff. If you use this harness, please cite the paper and the archived release.
 
-## Zenodo
-10.5281/zenodo.23483303
-
 ## License
 MIT (code). The corpus is derived from public arXiv abstract metadata; only titles and abstracts are
 redistributed.

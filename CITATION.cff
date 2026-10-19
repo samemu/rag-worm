@@ -10,5 +10,4 @@ version: 2.0.0
 date-released: 2026-10-17
 license: MIT
 url: "https://github.com/samtout/rag-worm"
-#doi: "10.5281/zenodo.XXXXXXX"
-#identifiers: / preferred-citation: block pointing to the arXiv ID
+doi: "10.5281/zenodo.23483303"
